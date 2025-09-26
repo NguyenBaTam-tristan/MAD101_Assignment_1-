@@ -1,8 +1,0 @@
-#câu 3
-#(pVq)->r = (p^r) and q
-a = [True, False]
-for p in a:
-    for q in a:
-        for r in a:
-            if not(p or q) or r == (p ^ r) and q:
-                print(p,q,r)

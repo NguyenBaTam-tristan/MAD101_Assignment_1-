@@ -1,0 +1,10 @@
+#câu 3
+#(pVq)->r = (p^r) and q
+a = [True, False]
+for p in a:
+    for q in a:
+        for r in a:
+            left = not(p or q) or r
+            right = (p ^ r) and q
+            if left == right:
+                print('p=',p,'q=',q,'r=',r)
