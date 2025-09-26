@@ -4,6 +4,7 @@ Nguyễn Bá Tâm, Trần Ngọc Tùng, Lưu Đình Huy
 <img width="712" height="507" alt="image" src="https://github.com/user-attachments/assets/a1459d69-de97-4370-af22-e846b1425750" />
 
 
+
 ### Câu 1.1: Tìm |B \ A|
 - **Tập A**: gồm các số tự nhiên `n` sao cho `n^2 + 2n` chia hết cho 15.  
   → Điều kiện kiểm tra: `(n*n + 2*n) % 15 == 0`.  
@@ -38,4 +39,42 @@ Nguyễn Bá Tâm, Trần Ngọc Tùng, Lưu Đình Huy
 ### Câu 1.4: Tìm |B ∩ C|
 - **Ý tưởng**:  
   1. Vì cả C và B đều ≤ 10000, ta chỉ cần lọc lại những phần tử của C có trong B.  
-  2. Đếm số phần tử đó.  
+  2. Đếm số phần tử đó.
+  
+<img width="675" height="182" alt="image" src="https://github.com/user-attachments/assets/64ee8cb0-47d3-4185-8179-2fc7882ceb8a" />
+# Câu 3:
+
+
+So sánh hai mệnh đề logic:
+
+\[
+(p \lor q) \rightarrow r \quad \text{và} \quad (p \oplus r) \land q
+\]
+
+---
+
+## 💡 Hướng tư duy & cách làm
+
+1. **Phân tích mệnh đề**  
+   - \((p \lor q) \rightarrow r\) tương đương với:  
+     \[
+     \neg(p \lor q) \lor r
+     \]  
+   - \((p \oplus r) \land q\) giữ nguyên (⊕ là XOR).
+
+2. **Chuyển sang Python**  
+   - `not(p or q) or r`  
+   - `(p ^ r) and q`
+
+3. **Lập bảng chân trị bằng code**  
+   - Cho `p, q, r` chạy lần lượt các giá trị `True/False`.  
+   - Tính giá trị của cả 2 mệnh đề.  
+   - So sánh chúng → nếu bằng nhau thì in ra.
+
+4. **Ý nghĩa**  
+   - Đây là cách kiểm tra xem hai mệnh đề có **tương đương logic** hay không.  
+   - Việc dùng vòng lặp giúp duyệt nhanh toàn bộ 8 trường hợp của `p, q, r` thay vì lập bảng thủ công.
+
+
+
+     
