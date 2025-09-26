@@ -42,25 +42,15 @@ Nguyễn Bá Tâm, Trần Ngọc Tùng, Lưu Đình Huy
   2. Đếm số phần tử đó.
   
 <img width="675" height="182" alt="image" src="https://github.com/user-attachments/assets/64ee8cb0-47d3-4185-8179-2fc7882ceb8a" />
-# Câu 3:
 
 
-So sánh hai mệnh đề logic:
-
-\[
-(p \lor q) \rightarrow r \quad \text{và} \quad (p \oplus r) \land q
-\]
-
----
-
-## 💡 Hướng tư duy & cách làm
-
+#Câu 3:
 1. **Phân tích mệnh đề**  
-   - \((p \lor q) \rightarrow r\) tương đương với:  
-     \[
-     \neg(p \lor q) \lor r
-     \]  
-   - \((p \oplus r) \land q\) giữ nguyên (⊕ là XOR).
+   - (p ∨ q) → r  tương đương với:  
+     ```
+     ¬(p ∨ q) ∨ r
+     ```  
+   - (p ⊕ r) ∧ q  giữ nguyên (⊕ là XOR).
 
 2. **Chuyển sang Python**  
    - `not(p or q) or r`  
@@ -74,7 +64,6 @@ So sánh hai mệnh đề logic:
 4. **Ý nghĩa**  
    - Đây là cách kiểm tra xem hai mệnh đề có **tương đương logic** hay không.  
    - Việc dùng vòng lặp giúp duyệt nhanh toàn bộ 8 trường hợp của `p, q, r` thay vì lập bảng thủ công.
-
 
 
      
