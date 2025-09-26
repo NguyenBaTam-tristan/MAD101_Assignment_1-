@@ -1,0 +1,62 @@
+import math
+
+# =====================
+# Câu 1.1: B \ A có bao nhiêu phần tử
+# =====================
+# A = { n ∈ N | n^2 + 2n chia hết cho 15 }
+# B = {0, 1, 2, ..., 10000}
+
+def in_set_A(n):
+    return (n*n + 2*n) % 15 == 0
+
+A = [n for n in range(0, 10001) if in_set_A(n)]
+B = list(range(0, 10001))
+
+B_minus_A = [n for n in B if n not in A]
+print("1. |B \\ A| =", len(B_minus_A))
+
+
+# =====================
+# Câu 1.2: Phần tử thứ 100 của A ∩ B theo thứ tự giảm dần
+# =====================
+A_inter_B = sorted([n for n in A if n in B], reverse=True)
+print("2. Phần tử thứ 100 của A ∩ B theo giảm dần =", A_inter_B[99])
+
+
+# =====================
+# Câu 1.3: Kiểm tra số có thuộc C không
+# C = { n ∈ N | n = p * q, với p, q là 2 số nguyên tố phân biệt }
+# =====================
+
+def is_prime(x):
+    if x < 2:
+        return False
+    for i in range(2, int(math.sqrt(x)) + 1):
+        if x % i == 0:
+            return False
+    return True
+
+# Sinh tất cả số nguyên tố < 5000
+primes = [p for p in range(2, 5000) if is_prime(p)]
+
+def in_set_C(n):
+    for p in primes:
+        if p >= n:
+            break
+        if n % p == 0:
+            q = n // p
+            if q != p and is_prime(q):
+                return True
+    return False
+
+# Tạo tập C (<= 10000 để không bị quá lớn)
+C = [n for n in range(6, 10001) if in_set_C(n)]
+
+print("3. Phần tử thứ 100 của C theo tăng dần =", C[99])
+
+
+# =====================
+# Câu 1.4: B ∩ C có bao nhiêu phần tử
+# =====================
+B_inter_C = [n for n in C if n in B]
+print("4. |B ∩ C| =", len(B_inter_C))
