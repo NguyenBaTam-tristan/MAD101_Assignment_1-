@@ -44,7 +44,7 @@ Nguyễn Bá Tâm, Trần Ngọc Tùng, Lưu Đình Huy
 <img width="675" height="182" alt="image" src="https://github.com/user-attachments/assets/64ee8cb0-47d3-4185-8179-2fc7882ceb8a" />
 
 
-#Câu 3:
+### Câu 3: 
 1. **Phân tích mệnh đề**  
    - (p ∨ q) → r  tương đương với:  
      ```
