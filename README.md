@@ -2,7 +2,7 @@
 
 Python solutions to **Assignment 1 of the MAD101 course**. The assignment covers set operations, prime numbers, and propositional logic, each solved with short, readable Python code.
 
-**Authors:** Nguyễn Bá Tâm, Trần Ngọc Tùng, Lưu Đình Huy
+**Authors:** Nguyễn Bá Tâm
 
 ## Table of Contents
 
