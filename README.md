@@ -1,69 +1,101 @@
-# MAD101_Assignment_1-
-Nguyễn Bá Tâm, Trần Ngọc Tùng, Lưu Đình Huy
+# Discrete Math in Python: Sets, Primes, and Logic
 
-<img width="712" height="507" alt="image" src="https://github.com/user-attachments/assets/a1459d69-de97-4370-af22-e846b1425750" />
+Python solutions to **Assignment 1 of the MAD101 course**. The assignment covers set operations, prime numbers, and propositional logic, each solved with short, readable Python code.
 
+**Authors:** Nguyễn Bá Tâm, Trần Ngọc Tùng, Lưu Đình Huy
 
+## Table of Contents
 
-### Câu 1.1: Tìm |B \ A|
-- **Tập A**: gồm các số tự nhiên `n` sao cho `n^2 + 2n` chia hết cho 15.  
-  → Điều kiện kiểm tra: `(n*n + 2*n) % 15 == 0`.  
-- **Tập B**: gồm tất cả số từ 0 đến 10000.  
-- **Ý tưởng**:  
-  1. Sinh tập A bằng cách duyệt từ 0 → 10000 và giữ lại số thỏa mãn điều kiện.  
-  2. Tập B có sẵn bằng `range(0, 10001)`.  
-  3. Lấy hiệu `B \ A` bằng cách lọc các số thuộc B mà không thuộc A.  
-  4. Đếm số phần tử.  
+- [Repository Contents](#repository-contents)
+- [Question 1: Sets and Prime Numbers](#question-1-sets-and-prime-numbers)
+- [Question 3: Logical Equivalence](#question-3-logical-equivalence)
+- [Getting Started](#getting-started)
+- [Notes](#notes)
 
----
+## Repository Contents
 
-### Câu 1.2: Phần tử thứ 100 của A ∩ B theo thứ tự giảm dần
-- **Ý tưởng**:  
-  1. Giao của A và B chính là A (vì A đã được lọc từ B).  
-  2. Sắp xếp A theo thứ tự giảm dần (`sorted(..., reverse=True)`).  
-  3. Lấy phần tử thứ 100 (chỉ số 99 trong Python).  
+```
+├── .gitignore
+├── MAD101_Assignment_1_Question_1   # Sets and prime numbers
+├── MAD101_Assignment_1_Question_3   # Truth tables and logical equivalence
+└── README.md
+```
 
----
+## Question 1: Sets and Prime Numbers
 
-### Câu 1.3: Tập C = { n | n = p * q, với p, q là 2 số nguyên tố phân biệt }
-- **Ý tưởng**:  
-  1. Viết hàm `is_prime(x)` để kiểm tra số nguyên tố.  
-  2. Sinh danh sách tất cả số nguyên tố nhỏ hơn 5000 để dùng kiểm tra nhanh.  
-     (5000 là đủ vì `p * q ≤ 10000`, nên `p` và `q` đều ≤ 5000).  
-  3. Với mỗi số `n` từ 6 → 10000, kiểm tra xem có thể viết thành `p * q` với `p, q` nguyên tố và `p ≠ q`.  
-  4. Tạo danh sách C.  
-  5. Lấy phần tử thứ 100 theo thứ tự tăng dần.  
+**Definitions**
 
----
+- **A** is the set of natural numbers `n` such that `n² + 2n` is divisible by 15.
+- **B** is the set of all integers from 0 to 10,000.
+- **C** is the set of numbers `n = p × q`, where `p` and `q` are two *distinct* primes.
 
-### Câu 1.4: Tìm |B ∩ C|
-- **Ý tưởng**:  
-  1. Vì cả C và B đều ≤ 10000, ta chỉ cần lọc lại những phần tử của C có trong B.  
-  2. Đếm số phần tử đó.
-  
-<img width="675" height="182" alt="image" src="https://github.com/user-attachments/assets/64ee8cb0-47d3-4185-8179-2fc7882ceb8a" />
+### 1.1 Find |B \ A|
 
+Count how many numbers in B are not in A.
 
-### Câu 3: 
-1. **Phân tích mệnh đề**  
-   - (p ∨ q) → r  tương đương với:  
-     ```
-     ¬(p ∨ q) ∨ r
-     ```  
-   - (p ⊕ r) ∧ q  giữ nguyên (⊕ là XOR).
+1. Build A by looping from 0 to 10,000 and keeping every `n` where `(n*n + 2*n) % 15 == 0`.
+2. Define B as `range(0, 10001)`.
+3. Compute the set difference B \ A by keeping the numbers in B that are not in A.
+4. Count the elements.
 
-2. **Chuyển sang Python**  
-   - `not(p or q) or r`  
-   - `(p ^ r) and q`
+### 1.2 Find the 100th element of A ∩ B in descending order
 
-3. **Lập bảng chân trị bằng code**  
-   - Cho `p, q, r` chạy lần lượt các giá trị `True/False`.  
-   - Tính giá trị của cả 2 mệnh đề.  
-   - So sánh chúng → nếu bằng nhau thì in ra.
+1. Since A is built from numbers in B, A ∩ B is simply A.
+2. Sort A in descending order with `sorted(..., reverse=True)`.
+3. Take the 100th element, which is index `99` in Python.
 
-4. **Ý nghĩa**  
-   - Đây là cách kiểm tra xem hai mệnh đề có **tương đương logic** hay không.  
-   - Việc dùng vòng lặp giúp duyệt nhanh toàn bộ 8 trường hợp của `p, q, r` thay vì lập bảng thủ công.
+### 1.3 Build C and find its 100th element
 
+1. Write an `is_prime(x)` function.
+2. Generate all primes below 5,000. This is enough because `p × q ≤ 10,000`, so both primes are at most 5,000.
+3. For each `n` from 6 to 10,000, check whether it can be written as `p × q` with `p ≠ q`, both prime.
+4. Collect the results into the list C.
+5. Take the 100th element in ascending order.
 
-     
+### 1.4 Find |B ∩ C|
+
+Since every element of C is at most 10,000, keep the elements of C that are also in B and count them.
+
+## Question 3: Logical Equivalence
+
+**Goal:** Check when the two propositions `(p ∨ q) → r` and `(p ⊕ r) ∧ q` have the same truth value, where `⊕` is XOR.
+
+**Step 1: Simplify the implication.**
+`(p ∨ q) → r` is equivalent to `¬(p ∨ q) ∨ r`.
+
+**Step 2: Translate to Python.**
+
+```python
+not (p or q) or r      # (p ∨ q) → r
+(p ^ r) and q          # (p ⊕ r) ∧ q
+```
+
+**Step 3: Build the truth table in code.**
+Loop over all 8 combinations of `p`, `q`, and `r` (`True` and `False`), evaluate both expressions, and print the cases where they match.
+
+**Why it matters:** Looping over every combination is a fast, reliable way to test whether two propositions are logically equivalent, without building the truth table by hand.
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.x
+
+### Run the solutions
+
+```bash
+git clone https://github.com/NguyenBaTam-tristan/MAD101_Assignment_1-.git
+cd MAD101_Assignment_1-
+```
+
+The solution files have no `.py` extension, so run them by passing the file name to Python:
+
+```bash
+python MAD101_Assignment_1_Question_1
+python MAD101_Assignment_1_Question_3
+```
+
+## Notes
+
+- There is no Question 2 in this repository.
+- The original write-up was in Vietnamese and included screenshots of the code and its output. This README summarizes the approach for each question in English.
